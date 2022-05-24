@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    tools:override="true"
+
+    >
+
+        <item
+            android:id="@+id/home"
+            android:title="Home"
+            android:icon="@drawable/ic_baseline_home_24"
+
+            />
+
+        <item
+            android:id="@+id/nav_list"
+            android:title="My List"
+            android:icon="@drawable/ic_baseline_format_list_bulleted_24"
+
+            />
+
+        <item
+            android:id="@+id/nav_tending"
+            android:title="Trending"
+            android:icon="@drawable/chalkboard_user_solid"/>
+
+        <item
+            android:id="@+id/nav_upcoming"
+            android:title="Upcoming"
+            android:icon="@drawable/camera"/>
+
+        <item
+            android:id="@+id/nav_rating"
+            android:title="Top Rated"
+            android:icon="@drawable/rating"/>
+
+
+</menu>

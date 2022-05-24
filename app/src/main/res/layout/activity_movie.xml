@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".Movie" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="All the Old Knives \n(2002)"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:textSize="34sp"
+        android:fontFamily="@font/inter_bold"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+
+        >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="320dp"
+            android:src="@drawable/movie_page"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Overview"
+                android:textColor="#ED1C24"
+                android:textSize="18sp"
+                android:fontFamily="@font/inter_bold"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="When the CIA discovers one of its agents leaked information that cost more than 100 people their lives, veteran operative Henry Pelham is assigned to root out the mole with his former lover and colleague Celia Harrison."
+                android:textColor="#fff"
+                android:textSize="9sp"
+                android:lineHeight="15sp"
+                android:fontFamily="@font/inter_light"
+                android:layout_marginTop="10dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Release Date"
+                android:textColor="#ED1C24"
+                android:textSize="18sp"
+                android:fontFamily="@font/inter_bold"
+                android:textStyle="bold"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2022-04-08"
+                android:textColor="#fff"
+                android:textSize="12sp"
+                android:fontFamily="@font/inter_bold"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rating"
+                android:textColor="#ED1C24"
+                android:textSize="18sp"
+                android:fontFamily="@font/inter_bold"
+                android:textStyle="bold"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6/10"
+                android:textColor="#fff"
+                android:textSize="12sp"
+                android:fontFamily="@font/inter_bold"
+                android:layout_marginTop="10dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bordercolor"
+                android:padding="7dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/inter_bold"
+                android:letterSpacing=".1"
+                android:text="Add to My List"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#fff"
+                android:drawableStart="@drawable/ic_baseline_add_24"
+
+                />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

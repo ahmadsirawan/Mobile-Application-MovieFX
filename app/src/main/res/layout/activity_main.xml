@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#000"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:layout_width="333dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/moviefx_logo" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_bold"
+        android:gravity="center"
+        android:letterSpacing=".1"
+        android:text="Welcome"
+        android:textColor="#fff"
+        android:textSize="38dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_light"
+        android:gravity="center"
+        android:textFontWeight="200"
+        android:text="Explore the movies world"
+        android:letterSpacing=".1"
+        android:textColor="#fff"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSingup"
+        android:backgroundTint="#ffff"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="SIGN UP"
+        android:fontFamily="@font/inter_bold"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:letterSpacing=".1"
+        android:background="@drawable/roundstyle"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnLogin"
+        android:backgroundTint="#ED1C24"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="LOGIN"
+        android:fontFamily="@font/inter_bold"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:letterSpacing=".1"
+        android:textColor="#fff"
+        android:background="@drawable/roundstyle"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"/>
+
+
+
+
+</LinearLayout>

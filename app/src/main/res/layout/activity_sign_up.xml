@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#000"
+    tools:context=".SignUp">
+
+    <ImageView
+        android:layout_width="333dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/moviefx_logo" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_bold"
+        android:gravity="center"
+        android:letterSpacing=".1"
+        android:text="Create your account"
+        android:textColor="#fff"
+        android:textSize="18sp"
+       />
+
+   <EditText
+       android:layout_width="280dp"
+       android:layout_height="wrap_content"
+       android:ems="10"
+       android:drawableEnd="@drawable/ic_baseline_person_24"
+       android:hint="Username"
+       android:textSize="15sp"
+       android:textColor="#fff"
+       android:textColorHint="#8F8F8F"
+       android:inputType="textPersonName"
+       android:layout_gravity="center"
+       android:backgroundTint="#fff"
+       android:layout_marginTop="30dp"
+       />
+
+    <EditText
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:drawableEnd="@drawable/ic_baseline_email_24"
+        android:hint="Email"
+        android:textSize="15sp"
+        android:textColor="#fff"
+        android:textColorHint="#8F8F8F"
+        android:inputType="textEmailAddress"
+        android:layout_gravity="center"
+        android:backgroundTint="#fff"
+        android:layout_marginTop="20dp"
+        />
+
+
+    <EditText
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:drawableEnd="@drawable/ic_baseline_lock_24"
+        android:hint="Password"
+        android:textSize="15sp"
+        android:textColor="#fff"
+        android:textColorHint="#8F8F8F"
+        android:inputType="textPassword"
+        android:layout_gravity="center"
+        android:backgroundTint="#fff"
+        android:layout_marginTop="20dp"
+        />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="#ffff"
+        android:fontFamily="@font/inter_bold"
+        android:letterSpacing=".1"
+        android:text="SIGN UP"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        />
+
+
+</LinearLayout>
