@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -77,6 +78,7 @@ public class Movie extends AppCompatActivity {
                 documentReference.set(img).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
+                        Toast.makeText(Movie.this, "Movie Added To Your List", Toast.LENGTH_SHORT).show();
                         Log.d("img","onSuccess: image added" + userID);
                     }
                 });

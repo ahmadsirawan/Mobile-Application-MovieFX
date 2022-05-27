@@ -148,13 +148,19 @@ public class MyList extends AppCompatActivity implements AdapterLists.OnMovieLis
         adapterAction = new AdapterLists(this, imgAction,this);
         recyclerViewAction.setAdapter(adapterAction);
 
+        
+
         DocumentReference documentReference2 = fStore.collection("images").document(userId);
+
         documentReference2.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
 
-                imgAction[0] = Integer.valueOf(value.getString("imgURL"));
-                adapterAction.notifyDataSetChanged();
+                if (value.exists() && value != null){
+                    imgAction[0] = Integer.valueOf(value.getString("imgURL"));
+                    adapterAction.notifyDataSetChanged();
+                }
+
 
 
             }
