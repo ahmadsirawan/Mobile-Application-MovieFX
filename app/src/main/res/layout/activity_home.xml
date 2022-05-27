@@ -64,6 +64,33 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+    <TextView
+        android:id="@+id/verMsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Account not verified"
+        android:fontFamily="@font/inter_bold"
+        android:textStyle="italic"
+        android:textSize="12dp"
+        android:gravity="center"
+        android:textColor="#ED1C24"
+        android:layout_marginBottom="5dp"
+        android:visibility="gone"
+       />
+
+        />
+        <Button
+            android:id="@+id/verBtn"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:text="Verify"
+            android:layout_gravity="center"
+            android:background="#fff"
+            android:textColor="#ED1C24"
+            android:textSize="10sp"
+            android:visibility="gone"
+
+            />
 
     <TextView
         android:layout_width="match_parent"
@@ -132,10 +159,11 @@
         android:layout_marginLeft="-10dp"
         app:itemIconSize="30sp"
         app:itemTextAppearance="@style/CustomTextStyle"
-        app:itemVerticalPadding="40dp"
+        app:itemVerticalPadding="30dp"
         app:itemIconPadding="10dp"
         android:background="#000"
         app:itemIconTint="#fff"
+
 
         />
 </androidx.drawerlayout.widget.DrawerLayout>

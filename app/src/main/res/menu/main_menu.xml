@@ -35,5 +35,10 @@
             android:title="Top Rated"
             android:icon="@drawable/rating"/>
 
+        <item
+            android:id="@+id/logout"
+            android:title="Logout"
+            android:icon="@drawable/ic_baseline_exit_to_app_24"/>
+
 
 </menu>

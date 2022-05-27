@@ -31,6 +31,7 @@
         >
 
         <ImageView
+            android:id="@+id/movieImg"
             android:layout_width="0dp"
             android:layout_height="320dp"
             android:src="@drawable/movie_page"
@@ -53,7 +54,7 @@
                 android:textSize="18sp"
                 android:fontFamily="@font/inter_bold"
                 android:textStyle="bold"
-                android:layout_marginTop="10dp"/>
+               />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -105,12 +106,13 @@
                 android:layout_marginTop="10dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bordercolor"
                 android:padding="7dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/inter_bold"
                 android:letterSpacing=".1"
                 android:text="Add to My List"

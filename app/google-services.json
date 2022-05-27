@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "985255506244",
+    "project_id": "moviefx-d86bb",
+    "storage_bucket": "moviefx-d86bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:985255506244:android:37494cbdce2c66e3af2711",
+        "android_client_info": {
+          "package_name": "com.example.moviefx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "985255506244-n0gm3sp03mh7r41srrav2qb2gfpu7dtr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuxiIg-Ev7xw1Cs8_q4vNP0Nwdm3bAg9k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "985255506244-n0gm3sp03mh7r41srrav2qb2gfpu7dtr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

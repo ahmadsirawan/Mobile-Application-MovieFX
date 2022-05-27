@@ -2,6 +2,7 @@ package com.example.moviefx;
 
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,10 +25,16 @@ import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.ArrayList;
 
-public class Trending extends AppCompatActivity {
+public class Trending extends AppCompatActivity implements AdapterLists.OnMovieListener {
 
     RecyclerView recyclerViewAction;
     AdapterLists adapterAction;
@@ -38,7 +45,10 @@ public class Trending extends AppCompatActivity {
     ActionBarDrawerToggle actionBarDrawerToggle;
     MaterialToolbar toolbar;
     Intent intent;
-
+    TextView userWelcome;
+    FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
+    String userId;
 
     int imgAction[] = {
             R.drawable.action_1,
@@ -57,6 +67,23 @@ public class Trending extends AppCompatActivity {
         toolbar = findViewById(R.id.topAppbar);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
+
+        fAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
+        userId = fAuth.getCurrentUser().getUid();
+
+        DocumentReference documentReference = fStore.collection("users").document(userId);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+
+
+                View header = navigationView.getHeaderView(0);
+                userWelcome = (TextView) header.findViewById(R.id.welcomeUser);
+                userWelcome.setText("Hi, " + value.getString("username") + "!");
+            }
+        });
+
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +119,11 @@ public class Trending extends AppCompatActivity {
                         intent = new Intent(Trending.this, TopRated.class);
                         startActivity(intent);
                         break;
+                    case R.id.logout:
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(getApplicationContext(), Login.class));
+                        finish();
+                        break;
                     default:
                         return true;
                 }
@@ -108,7 +140,7 @@ public class Trending extends AppCompatActivity {
         recyclerViewAction = findViewById(R.id.recyclerviewAction);
         recyclerViewAction.setLayoutManager(new GridLayoutManager(this, 2));
 
-        adapterAction = new AdapterLists(this, imgAction);
+        adapterAction = new AdapterLists(this, imgAction, this);
         recyclerViewAction.setAdapter(adapterAction);
 
 
@@ -122,5 +154,19 @@ public class Trending extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onMovieClick(int position) {
+
+
+
+//        movie.setImageResource(imgAction[position]);
+        Intent intent = new Intent(Trending.this, Movie.class);
+        intent.putExtra("my image", imgAction[position]);
+
+
+        startActivity(intent);
+
     }
 }

@@ -2,6 +2,7 @@ package com.example.moviefx;
 
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -21,12 +23,21 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.ArrayList;
 
-public class Home extends AppCompatActivity {
+public class Home extends AppCompatActivity implements Adapter.OnMovieListener {
 
     RecyclerView recyclerViewAction;
     RecyclerView recyclerViewDrama;
@@ -40,24 +51,34 @@ public class Home extends AppCompatActivity {
     ActionBarDrawerToggle actionBarDrawerToggle;
     MaterialToolbar toolbar;
     Intent intent;
+    TextView userWelcome;
+    FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
+    String userId;
+    Button veryBtn;
+    TextView veryMsg;
 
 
 
-    int imgAction[] = {
+
+
+
+    public int imgAction[] = {
             R.drawable.action_1,
             R.drawable.action_2,
             R.drawable.action_3,
-            R.drawable.action_4
+            R.drawable.action_4,
+
     };
 
-    int imgDrama[] = {
+    public int imgDrama[] = {
             R.drawable.drama_1,
             R.drawable.drama_2,
             R.drawable.drama_3,
             R.drawable.drama_4
     };
 
-    int imgComedy[] = {
+    public int imgComedy[] = {
             R.drawable.comedy_1,
             R.drawable.comedy_2,
             R.drawable.comedy_3,
@@ -70,10 +91,54 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         toolbar = findViewById(R.id.topAppbar);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
+
+
+        fAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
+        userId = fAuth.getCurrentUser().getUid();
+
+        veryBtn = findViewById(R.id.verBtn);
+        veryMsg = findViewById(R.id.verMsg);
+
+        final FirebaseUser user = fAuth.getCurrentUser();
+
+        if (!user.isEmailVerified()){
+            veryMsg.setVisibility(View.VISIBLE);
+            veryBtn.setVisibility(View.VISIBLE);
+
+            veryBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(Home.this, "A verification email has been sent, Please click on verify to be able to login " , Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("fail", "onFailure: Email was not sent!");
+                        }
+                    });
+                }
+            });
+        }
+
+        DocumentReference documentReference = fStore.collection("users").document(userId);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+
+
+                View header = navigationView.getHeaderView(0);
+                userWelcome = (TextView) header.findViewById(R.id.welcomeUser);
+                userWelcome.setText("Hi, " + value.getString("username") + "!");
+            }
+        });
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
         @Override
@@ -109,6 +174,11 @@ public class Home extends AppCompatActivity {
                   intent = new Intent(Home.this, TopRated.class);
                   startActivity(intent);
                   break;
+              case R.id.logout:
+                  FirebaseAuth.getInstance().signOut();
+                  startActivity(new Intent(getApplicationContext(), Login.class));
+                  finish();
+                  break;
               default:
                   return true;
           }
@@ -125,8 +195,9 @@ public class Home extends AppCompatActivity {
         recyclerViewAction = findViewById(R.id.recyclerviewAction);
         recyclerViewAction.setLayoutManager(layoutManagerAction);
 
-        adapterAction = new Adapter(this, imgAction);
+        adapterAction = new Adapter(this, imgAction, this);
         recyclerViewAction.setAdapter(adapterAction);
+
 
         // Setting recyclerView for Drama movies section
         LinearLayoutManager layoutManagerDrama
@@ -135,7 +206,7 @@ public class Home extends AppCompatActivity {
         recyclerViewDrama = findViewById(R.id.recyclerviewDrama);
         recyclerViewDrama.setLayoutManager(layoutManagerDrama);
 
-        adapterDrama = new Adapter(this, imgDrama);
+        adapterDrama = new Adapter(this, imgDrama, this);
         recyclerViewDrama.setAdapter(adapterDrama);
 
         // Setting recyclerView for Comedy movies section
@@ -145,7 +216,7 @@ public class Home extends AppCompatActivity {
         recyclerViewComedy = findViewById(R.id.recyclerviewComedy);
         recyclerViewComedy.setLayoutManager(layoutManagerComedy);
 
-        adapterComedy = new Adapter(this, imgComedy);
+        adapterComedy = new Adapter(this, imgComedy, this);
         recyclerViewComedy.setAdapter(adapterComedy);
 
 
@@ -159,5 +230,19 @@ public class Home extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onMovieClick(int position) {
+
+
+
+        Intent intent = new Intent(Home.this, Movie.class);
+
+            intent.putExtra("my image", imgAction[position]);
+
+
+        startActivity(intent);
+
     }
 }
