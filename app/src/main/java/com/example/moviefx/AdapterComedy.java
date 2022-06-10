@@ -8,30 +8,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
+public class AdapterComedy extends RecyclerView.Adapter<AdapterComedy.ViewHolder> {
 
     Context context;
-    int imgAction[];
+    private List<MovieModel> mData;
     private OnMovieListener monMovieListener;
 
-    public Adapter(Context context, int imgAction[], OnMovieListener monMovieListener) {
+    public AdapterComedy(Context context, List<MovieModel> mData, OnMovieListener monMovieListener) {
         this.context = context;
-        this.imgAction = imgAction;
+        this.mData = mData;
         this.monMovieListener = monMovieListener;
     }
 
     @NonNull
     @Override
-    public Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdapterComedy.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.item, parent, false);
         ViewHolder viewHolder = new ViewHolder(view, monMovieListener);
@@ -40,15 +39,19 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Adapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull AdapterComedy.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 //        holder.textView.setText(data[position]);
-        holder.imageView.setImageResource(imgAction[position]);
+       // holder.imageView.setImageResource(imgAction[position]);
+        // Using Glide library to dispaly the image
+        Glide.with(context)
+                .load(mData.get(position).getImg())
+                .into(holder.imageView);
 
     }
 
     @Override
     public int getItemCount() {
-        return imgAction.length;
+        return mData.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -68,11 +71,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
         @Override
         public void onClick(View view) {
-            onMovieListener.onMovieClick(getAdapterPosition());
+            onMovieListener.onMovieClick3(getAdapterPosition());
         }
     }
     public interface OnMovieListener{
-        void onMovieClick(int position);
+        void onMovieClick3(int position);
 
     }
 }

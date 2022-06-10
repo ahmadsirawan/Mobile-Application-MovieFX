@@ -53,6 +53,7 @@
                     />
 
                 <ImageButton
+                    android:id="@+id/search_bar"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_baseline_search_24"
@@ -78,6 +79,17 @@
             android:layout_marginBottom="15dp"
             android:letterSpacing=".1"/>
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/CustomTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_gravity="center"
+            android:layout_marginVertical="100dp"
+
+            />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerviewAction"
             android:scrollbars="vertical"
@@ -101,7 +113,7 @@
         android:layout_marginLeft="-10dp"
         app:itemIconSize="30sp"
         app:itemTextAppearance="@style/CustomTextStyle"
-        app:itemVerticalPadding="30dp"
+        app:itemVerticalPadding="20dp"
         app:itemIconPadding="10dp"
         android:background="#000"
         app:itemIconTint="#fff"

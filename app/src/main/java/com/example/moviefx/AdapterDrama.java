@@ -16,13 +16,13 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class AdapterLists extends RecyclerView.Adapter<AdapterLists.ViewHolder> {
+public class AdapterDrama extends RecyclerView.Adapter<AdapterDrama.ViewHolder> {
 
     Context context;
     private List<MovieModel> mData;
     private OnMovieListener monMovieListener;
 
-    public AdapterLists(Context context, List<MovieModel> mData, OnMovieListener monMovieListener) {
+    public AdapterDrama(Context context, List<MovieModel> mData, OnMovieListener monMovieListener) {
         this.context = context;
         this.mData = mData;
         this.monMovieListener = monMovieListener;
@@ -30,18 +30,17 @@ public class AdapterLists extends RecyclerView.Adapter<AdapterLists.ViewHolder> 
 
     @NonNull
     @Override
-    public AdapterLists.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdapterDrama.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.item_lists, parent, false);
+        View view = layoutInflater.inflate(R.layout.item, parent, false);
         ViewHolder viewHolder = new ViewHolder(view, monMovieListener);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterLists.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-//        holder.textView.setText(data[position]);
-       // holder.imageView.setImageResource(imgAction[position]);
+    public void onBindViewHolder(@NonNull AdapterDrama.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+
         // Using Glide library to dispaly the image
         Glide.with(context)
                 .load(mData.get(position).getImg())
@@ -71,11 +70,11 @@ public class AdapterLists extends RecyclerView.Adapter<AdapterLists.ViewHolder> 
 
         @Override
         public void onClick(View view) {
-            onMovieListener.onMovieClick(getAdapterPosition());
+            onMovieListener.onMovieClick2(getAdapterPosition());
         }
     }
     public interface OnMovieListener{
-        void onMovieClick(int position);
+        void onMovieClick2(int position);
 
     }
 }

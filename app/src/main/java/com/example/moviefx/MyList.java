@@ -18,11 +18,13 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,14 +33,13 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyList extends AppCompatActivity implements AdapterLists.OnMovieListener {
-
-    RecyclerView recyclerViewAction;
-    AdapterLists adapterAction;
-
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -49,15 +50,16 @@ public class MyList extends AppCompatActivity implements AdapterLists.OnMovieLis
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String userId;
+    ImageButton searchBarIcon;
 
 
+    public static RecyclerView recyclerView;
+    public static AdapterLists adapter;
 
-    int imgAction[] = {
-            R.drawable.mylist_1,
-            R.drawable.mylist_2,
-            R.drawable.mylist_3,
-            R.drawable.mylist_4
-    };
+    public static List<MovieModel> Myist;
+    public static  MovieModel model;
+
+
 
 
 
@@ -69,11 +71,17 @@ public class MyList extends AppCompatActivity implements AdapterLists.OnMovieLis
         toolbar = findViewById(R.id.topAppbar);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
+        searchBarIcon = (ImageButton) findViewById(R.id.search_bar);
+
 
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
         userId = fAuth.getCurrentUser().getUid();
+
+        Myist = new ArrayList<>();
+
+
 
         DocumentReference documentReference = fStore.collection("users").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
@@ -83,7 +91,8 @@ public class MyList extends AppCompatActivity implements AdapterLists.OnMovieLis
 
                 View header = navigationView.getHeaderView(0);
                 userWelcome = (TextView) header.findViewById(R.id.welcomeUser);
-                userWelcome.setText("Hi, " + value.getString("username") + "!");
+                userWelcome.setText("Hi, " + value.getString("username").substring(0, 1).toUpperCase() + value.getString("username").substring(1).toLowerCase() + "!");
+
 
 
             }
@@ -94,6 +103,14 @@ public class MyList extends AppCompatActivity implements AdapterLists.OnMovieLis
             @Override
             public void onClick(View view) {
                 drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+
+        searchBarIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(MyList.this, Search.class);
+                startActivity(intent);
             }
         });
 
@@ -124,8 +141,11 @@ public class MyList extends AppCompatActivity implements AdapterLists.OnMovieLis
                         intent = new Intent(MyList.this, TopRated.class);
                         startActivity(intent);
                         break;
+                    case R.id.nav_location:
+                        intent = new Intent(MyList.this, Map.class);
+                        startActivity(intent);
+                        break;
                     case R.id.logout:
-                        FirebaseAuth.getInstance().signOut();
                         startActivity(new Intent(getApplicationContext(), Login.class));
                         finish();
                         break;
@@ -139,34 +159,48 @@ public class MyList extends AppCompatActivity implements AdapterLists.OnMovieLis
 
 
         // Setting recyclerView for My List movies section
-        LinearLayoutManager layoutManagerAction
-                = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
-        recyclerViewAction = findViewById(R.id.recyclerviewAction);
-        recyclerViewAction.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView = findViewById(R.id.recyclerviewAction);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
-        adapterAction = new AdapterLists(this, imgAction,this);
-        recyclerViewAction.setAdapter(adapterAction);
+        adapter = new AdapterLists(this, Myist,this);
+        recyclerView.setAdapter(adapter);
 
         
 
-        DocumentReference documentReference2 = fStore.collection("images").document(userId);
+        DocumentReference documentReference2 = fStore.collection("users").document(userId).collection("images").document();
 
-        documentReference2.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+        fStore.collection("users").document(userId).collection("movies").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                if (value.exists() && value != null){
-                    imgAction[0] = Integer.valueOf(value.getString("imgURL"));
-                    adapterAction.notifyDataSetChanged();
+                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                    model = new MovieModel();
+
+                    model.setId("");
+                    model.setName(documentSnapshot.getString("title"));
+                    model.setOverview(documentSnapshot.getString("overview"));
+                    model.setDate(documentSnapshot.getString("date"));
+                    model.setRating(documentSnapshot.getString("rate"));
+                    model.setImg(documentSnapshot.getString("imgURL"));
+
+                    Myist.add(model);
+                    adapter.notifyDataSetChanged();
+
                 }
-
-
 
             }
         });
 
 
+    }
+
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+        adapter.notifyDataSetChanged();
     }
 
 
@@ -182,11 +216,12 @@ public class MyList extends AppCompatActivity implements AdapterLists.OnMovieLis
     @Override
     public void onMovieClick(int position) {
 
-
-        Intent intent = new Intent(MyList.this, Movie.class);
-        intent.putExtra("my image", imgAction[position]);
-
-
+        Intent intent = new Intent(getApplicationContext(), Movie.class);
+        intent.putExtra("image", Myist.get(position).getImg());
+        intent.putExtra("title", Myist.get(position).getName());
+        intent.putExtra("date", Myist.get(position).getDate());
+        intent.putExtra("overview", Myist.get(position).getOverview());
+        intent.putExtra("rate", Myist.get(position).getRating());
 
         startActivity(intent);
 

@@ -53,6 +53,7 @@
                     />
 
                 <ImageButton
+                    android:id="@+id/search_bar"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_baseline_search_24"
@@ -101,7 +102,7 @@
         android:layout_marginLeft="-10dp"
         app:itemIconSize="30sp"
         app:itemTextAppearance="@style/CustomTextStyle"
-        app:itemVerticalPadding="30dp"
+        app:itemVerticalPadding="20dp"
         app:itemIconPadding="10dp"
         android:background="#000"
         app:itemIconTint="#fff"

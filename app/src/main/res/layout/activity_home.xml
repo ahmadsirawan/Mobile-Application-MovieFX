@@ -53,6 +53,7 @@
                     />
 
                 <ImageButton
+                    android:id="@+id/search_bar"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_baseline_search_24"
@@ -100,14 +101,26 @@
         android:textStyle="bold"
         android:textSize="18dp"
         android:textColor="#fff"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="15dp"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/CustomTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_gravity="center"
+
+
+            />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewAction"
         android:scrollbars="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minHeight="65dp"
         />
 
     <TextView
@@ -121,11 +134,22 @@
         android:layout_marginTop="30dp"
         android:layout_marginBottom="15dp"/>
 
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="@style/CustomTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_gravity="center"
+
+            />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewDrama"
         android:scrollbars="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minHeight="65dp"
         />
 
     <TextView
@@ -139,11 +163,22 @@
         android:layout_marginTop="30dp"
         android:layout_marginBottom="15dp"/>
 
+        <ProgressBar
+            android:id="@+id/progressBar3"
+            style="@style/CustomTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_gravity="center"
+
+            />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewComedy"
         android:scrollbars="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minHeight="65dp"
         />
 
     </LinearLayout>
@@ -159,10 +194,11 @@
         android:layout_marginLeft="-10dp"
         app:itemIconSize="30sp"
         app:itemTextAppearance="@style/CustomTextStyle"
-        app:itemVerticalPadding="30dp"
+        app:itemVerticalPadding="20dp"
         app:itemIconPadding="10dp"
         android:background="#000"
         app:itemIconTint="#fff"
+
 
 
         />

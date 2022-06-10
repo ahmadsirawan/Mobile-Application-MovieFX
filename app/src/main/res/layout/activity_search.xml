@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000"
+        android:orientation="vertical"
+        tools:context=".Search"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#000"
+        >
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton                  android:layout_height="wrap_content" android:layout_width="wrap_content"            android:id="@+id/back"                          android:layout_marginTop="20dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp" app:srcCompat="?attr/actionModeCloseDrawable"                                       app:rippleColor="#fff" app:maxImageSize="40dp"                           app:fabSize="mini" android:tint="#ED1C24" app:backgroundTint="#000"            android:cropToPadding="false"                                                       android:contentDescription="@android:string/cancel"                                 android:clickable="true"
+
+
+            />
+
+
+        <EditText
+            android:id="@+id/searchInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:hint="Search..."
+           android:layout_marginLeft="5dp"
+            android:backgroundTint="#ED1C24"
+            android:layout_marginTop="10dp"
+            android:paddingBottom="15dp"
+            android:textColorHint="#fff"
+            android:drawableEnd="@drawable/ic_baseline_search_red"
+            android:letterSpacing=".1"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:layout_marginBottom="10dp"
+
+            />
+
+
+
+    </LinearLayout>
+
+
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/CustomTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_gravity="center"
+            android:layout_marginVertical="100dp"
+
+            />
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerviewAction"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:foregroundGravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            />
+
+
+    </LinearLayout>
+
+
+

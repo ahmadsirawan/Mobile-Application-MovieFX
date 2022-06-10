@@ -53,10 +53,6 @@ public class SignUp extends AppCompatActivity {
 
 
 
-        if (fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), Home.class));
-            finish();
-        }
 
 
         registerBtn.setOnClickListener(new View.OnClickListener() {

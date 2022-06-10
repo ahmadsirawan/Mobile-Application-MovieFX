@@ -10,14 +10,16 @@
     tools:context=".Movie" >
 
     <TextView
+        android:id="@+id/movieTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="All the Old Knives \n(2002)"
+        android:text=""
         android:textColor="#fff"
         android:gravity="center"
         android:textSize="34sp"
         android:fontFamily="@font/inter_bold"
         android:textStyle="bold"
+        android:padding="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
         />
@@ -33,7 +35,7 @@
         <ImageView
             android:id="@+id/movieImg"
             android:layout_width="0dp"
-            android:layout_height="320dp"
+            android:layout_height="match_parent"
             android:src="@drawable/movie_page"
             android:layout_weight="1"
             android:scaleType="centerCrop"
@@ -44,6 +46,7 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
             >
 
             <TextView
@@ -57,12 +60,14 @@
                />
 
             <TextView
+                android:id="@+id/movieOverview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="When the CIA discovers one of its agents leaked information that cost more than 100 people their lives, veteran operative Henry Pelham is assigned to root out the mole with his former lover and colleague Celia Harrison."
+                android:text="When the CIA discovers one of its agents leaked information that cost more than 100 people their lives, veteran operative Henry Pelham is assigned to root out the mole with his former lover and colleague Celia Harrison.
+"
                 android:textColor="#fff"
                 android:textSize="9sp"
-                android:lineHeight="15sp"
+                android:lineHeight="12sp"
                 android:fontFamily="@font/inter_light"
                 android:layout_marginTop="10dp"
                 />
@@ -75,9 +80,10 @@
                 android:textSize="18sp"
                 android:fontFamily="@font/inter_bold"
                 android:textStyle="bold"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="10dp"/>
 
             <TextView
+                android:id="@+id/movieDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2022-04-08"
@@ -94,9 +100,10 @@
                 android:textSize="18sp"
                 android:fontFamily="@font/inter_bold"
                 android:textStyle="bold"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="10dp"/>
 
             <TextView
+                android:id="@+id/movieRate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="6/10"
@@ -112,7 +119,7 @@
                 android:background="@drawable/bordercolor"
                 android:padding="7dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="25dp"
                 android:fontFamily="@font/inter_bold"
                 android:letterSpacing=".1"
                 android:text="Add to My List"
@@ -120,6 +127,25 @@
                 android:textStyle="bold"
                 android:textColor="#fff"
                 android:drawableStart="@drawable/ic_baseline_add_24"
+
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/removeBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:padding="7dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/inter_bold"
+                android:letterSpacing=".1"
+                android:text="Added to My List"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="#ED1C24"
+                android:drawableStart="@drawable/ic_baseline_check_24"
+                android:visibility="gone"
 
                 />
 

@@ -16,13 +16,13 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class AdapterLists extends RecyclerView.Adapter<AdapterLists.ViewHolder> {
+public class AdapterAction extends RecyclerView.Adapter<AdapterAction.ViewHolder> {
 
     Context context;
     private List<MovieModel> mData;
     private OnMovieListener monMovieListener;
 
-    public AdapterLists(Context context, List<MovieModel> mData, OnMovieListener monMovieListener) {
+    public AdapterAction(Context context, List<MovieModel> mData, OnMovieListener monMovieListener) {
         this.context = context;
         this.mData = mData;
         this.monMovieListener = monMovieListener;
@@ -30,16 +30,16 @@ public class AdapterLists extends RecyclerView.Adapter<AdapterLists.ViewHolder> 
 
     @NonNull
     @Override
-    public AdapterLists.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdapterAction.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.item_lists, parent, false);
+        View view = layoutInflater.inflate(R.layout.item, parent, false);
         ViewHolder viewHolder = new ViewHolder(view, monMovieListener);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterLists.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull AdapterAction.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 //        holder.textView.setText(data[position]);
        // holder.imageView.setImageResource(imgAction[position]);
         // Using Glide library to dispaly the image

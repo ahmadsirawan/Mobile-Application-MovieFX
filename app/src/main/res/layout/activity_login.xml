@@ -124,6 +124,7 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/google_signIn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -145,6 +146,7 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/fb_signIn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -164,6 +166,8 @@
 
 
         />
+
+
     <ProgressBar
         android:id="@+id/progressBar"
         style="@style/CustomTextStyle"
