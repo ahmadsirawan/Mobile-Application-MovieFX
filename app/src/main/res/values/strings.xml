@@ -7,10 +7,10 @@
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
     <string name="map">Map</string>
-    <string name="mapPlaces">AIzaSyCyOqEGIZutayfViMJT5oIvEAqlB6Cu9r4</string>
-    <string name="facebook_app_id">727824288265219</string>
-    <string name="fb_login_protocol_scheme">fb727824288265219</string>
-    <string name="facebook_client_token">56789</string>
+    <string name="mapPlaces">####</string>
+    <string name="facebook_app_id">####</string>
+    <string name="fb_login_protocol_scheme">####</string>
+    <string name="facebook_client_token">###</string>
 
 
 </resources>
